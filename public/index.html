@@ -1,17 +1,94 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <link rel="stylesheet" href="assets/templates/basic/css/bootstrap.min.css">
+    <!-- Icon Link -->
+    <link rel="stylesheet" href="assets/global/css/all.min.css">
+    <link rel="stylesheet" href="assets/global/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/templates/basic/css/flaticon.css">
+
+    <!-- Plugings Link -->
+    <link rel="stylesheet" href="assets/templates/basic/css/slick.css">
+    <link rel="stylesheet" href="assets/global/css/select2.min.css">
+    <link rel="stylesheet" href="assets/templates/basic/css/jquery-ui.css">
+
+    <!-- Cookie Link -->
+    <link rel="stylesheet" href="assets/templates/basic/css/cookie.css">
+    <!-- Custom Link -->
+    <link rel="stylesheet" href="assets/templates/basic/css/main.css">
+    <link rel="stylesheet" href="assets/templates/basic/css/custom.css">
+    <link rel="stylesheet" href="assets/templates/basic/css/colorf972.css?color=0E9E4D">
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<a href="javascript::void()" class="scrollToTop active"><i class="las la-chevron-up"></i></a>
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/global/js/jquery-3.6.0.min.js"></script>
+<script src="assets/templates/basic/js/bootstrap.min.js"></script>
+<script src="assets/templates/basic/js/slick.min.js"></script>
+<script src="assets/global/js/select2.min.js"></script>
+<script src="assets/templates/basic/js/jquery-ui.min.js"></script>
+<script src="assets/templates/basic/js/main.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        "use strict";
+        $(".langSel").on("change", function() {
+            window.location.href = "https://script.viserlab.com/viserbus/change/" + $(this).val();
+        });
+    });
+</script>
+<script>
+    (function($) {
+        "use strict";
+
+        $('#cookiePolicy').hide();
+        $('#cookiePolicy').show();
+
+        $('a[name="cookieAccept"]').click(function(event) {
+            event.preventDefault();
+            var actionUrl = "cookie/accept.json";
+            $.ajax({
+                type: "GET",
+                url: actionUrl,
+                success: function(data) {
+                    console.log(data);
+                    $('#cookiePolicy').hide();
+                    if (data.success) {
+                        notify('success', data.success);
+                        $('#cookiePolicy').hide();
+                    }
+                }
+            });
+        });
+        $('.search').on('change', function() {
+            $('#filterForm').submit();
+        });
+    })(jQuery);
+</script>
+
+
+<link rel="stylesheet" href="assets/global/css/iziToast.min.css">
+<script src="assets/global/js/iziToast.min.js"></script>
+
+<script>
+    "use strict";
+    function notify(status,message) {
+        iziToast[status]({
+            message: message,
+            position: "topRight"
+        });
+    }
+</script>
+</body>
 </html>
